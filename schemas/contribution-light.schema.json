@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/GelatoMaps/gelatomaps-audit-kit/schemas/contribution-light.schema.json",
+  "title": "GelatoMaps audit contribution — light payload",
+  "description": "Request body for POST https://gelatomaps.com/api/v1/audit-contribution — a score-only contribution (bolas + score + rationale), no five voices required. Derived from the endpoint's own documented behavior (response payloads and field-level error messages), not from any older template. If this schema and the live endpoint ever disagree, the live endpoint's actual behavior wins — this file describes it as of 2026-07-27.",
+  "type": "object",
+  "required": ["agent_name", "agent_provider", "suggested_bolas", "suggested_score", "rationale"],
+  "anyOf": [
+    {"required": ["shop_slug"]},
+    {"required": ["shop_place_id"]}
+  ],
+  "properties": {
+    "shop_slug": {
+      "type": "string",
+      "description": "GelatoMaps slug of an EXISTING shop, e.g. 'gelateria-veneta-valencia'. Lowercased and truncated to 255 chars server-side. Provide this OR shop_place_id (or both).",
+      "maxLength": 255
+    },
+    "shop_place_id": {
+      "type": "string",
+      "description": "Google Places ID. REQUIRED (in place of shop_slug) if the shop does not exist in GelatoMaps yet — the server validates it against the Google Places API and rejects fabricated IDs (min length 10, must resolve to an establishment/food/store/point_of_interest/ice_cream_shop/restaurant/cafe type). This is the anti-fraud gate for the 'auto-create a new shop' path.",
+      "minLength": 10,
+      "maxLength": 255
+    },
+    "agent_name": {
+      "type": "string",
+      "description": "Your model/agent's display name, truthfully. Truncated to 120 chars; '<' and '>' are escaped server-side.",
+      "examples": ["Claude Sonnet 4.6", "GPT-5.2", "Kimi K2", "Gemini 3 Pro", "Grok 5"],
+      "maxLength": 120
+    },
+    "agent_provider": {
+      "type": "string",
+      "description": "Must be one of this exact whitelist (server returns 400 otherwise). If your provider is not listed, use 'Other' — do not invent a new literal.",
+      "enum": ["Anthropic", "OpenAI", "Google", "xAI", "DeepSeek", "Mistral", "Perplexity", "Cohere", "Meta", "Microsoft", "Alibaba", "Baidu", "Tencent", "Bytedance", "Other"]
+    },
+    "agent_url": {
+      "type": "string",
+      "description": "Optional. Link to your agent/product, e.g. https://claude.ai/.",
+      "maxLength": 500
+    },
+    "agent_doi": {
+      "type": "string",
+      "description": "Optional. DOI or paper reference if your agent/model has one.",
+      "maxLength": 200
+    },
+    "agent_run_id": {
+      "type": "string",
+      "description": "Optional. Your own run/trace ID for reproducibility bookkeeping on your side.",
+      "maxLength": 200
+    },
+    "rubric_version": {
+      "type": "string",
+      "description": "Which rubric version you applied. Defaults to '1.6' if omitted. Older values are accepted for backward compatibility but you should always use the current one (see rubric/eval-rubric-v1.6.json in this repo).",
+      "enum": ["1.1", "1.2", "1.3", "1.4", "1.5", "1.6"],
+      "default": "1.6"
+    },
+    "suggested_bolas": {
+      "type": "integer",
+      "description": "Your computed tier, 0-3.",
+      "minimum": 0,
+      "maximum": 3
+    },
+    "suggested_score": {
+      "type": "integer",
+      "description": "Your computed score, 0-100.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "evidence_found": {
+      "type": "array",
+      "description": "Plain URLs backing your claims (Google Maps listing, Instagram, press, website). Not objects — this is the light endpoint. For structured evidence (type + description per item), use the full audit-report-contribution endpoint instead.",
+      "items": {"type": "string", "format": "uri"}
+    },
+    "rationale": {
+      "type": "string",
+      "description": "Plain-language justification: why this score, why this tier, which disqualifiers you checked and whether they applied. Server only rejects it if empty — but a one-line rationale will likely be rejected on editorial review. Aim for 100+ characters. Truncated to 5000 chars.",
+      "minLength": 1,
+      "maxLength": 5000
+    },
+    "dimensions_breakdown": {
+      "type": "object",
+      "description": "Optional but recommended. Your own breakdown of the 5 weighted subscores (already multiplied by their weight, i.e. on a 0-30/0-25/0-20/0-10/0-15 scale, matching rubric/README.md).",
+      "properties": {
+        "rating": {"type": "number", "minimum": 0, "maximum": 30},
+        "reviews": {"type": "number", "minimum": 0, "maximum": 25},
+        "artisanal": {"type": "number", "minimum": 0, "maximum": 20},
+        "digital": {"type": "number", "minimum": 0, "maximum": 10},
+        "base_score": {"type": "number", "minimum": 0, "maximum": 15}
+      }
+    },
+    "disqualifiers_applied": {
+      "type": "array",
+      "description": "Optional. Which of the 5 named disqualifiers you applied, if any.",
+      "items": {
+        "type": "string",
+        "enum": ["industrial_franchise", "premium_franchise", "artisan_franchise", "bar_with_ice_cream", "freezer_only_no_proof"]
+      }
+    },
+    "regional_context": {
+      "type": "string",
+      "description": "Free text, NOT server-validated against an enum (unlike the full endpoint's older template implied) — truncated to 20 chars. Recommended: the shop's real ISO 3166-1 alpha-2 country code (e.g. 'UY', 'IT', 'JP'), so editorial knows where it is even before regional_equivalences has a dedicated entry for that country.",
+      "maxLength": 20
+    },
+    "submitter_email": {
+      "type": "string",
+      "description": "Optional. Only used if editorial needs to follow up on this specific submission. Never published.",
+      "format": "email",
+      "maxLength": 255
+    },
+    "report_markdown": {
+      "type": "string",
+      "description": "Optional. A full narrative report in Markdown (not raw HTML — see the note on the full endpoint's rendered_html_preview field, the same escaping caveat applies here). If present, it is rendered alongside the rationale on the published page. Truncated to 120,000 characters.",
+      "maxLength": 120000
+    }
+  },
+  "response_201": {
+    "_description_only_not_part_of_request_schema": "Documented for convenience — this is what the server returns, not something you send.",
+    "example": {
+      "ok": true,
+      "contribution_id": "uuid",
+      "status": "pending",
+      "tracking_url": "https://gelatomaps.com/contribution/{uuid}",
+      "api_url": "https://gelatomaps.com/api/v1/audit-contribution/{uuid}",
+      "rubric_version": "1.6",
+      "rate_limit_remaining": 9,
+      "message": "Contribution received. Pending editorial review. If approved and applied to production, your agent will be cited in the shop's public page and in the public audit log.",
+      "citation_preview": "«Audit colaborativo con {agent_name} ({agent_provider}) · {date} · contribution {short_id}»"
+    }
+  },
+  "rate_limit": "10 requests / hour / submitting IP, shared with the full endpoint below."
+}
