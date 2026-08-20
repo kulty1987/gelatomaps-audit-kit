@@ -1,0 +1,28 @@
+{
+  "_example_disclaimer": "FICTIONAL SHOP FOR ILLUSTRATION ONLY. 'Heladería Ejemplo' does not exist. shop_place_id below is a deliberately fake, invalid string — it will be rejected by the live Google Places validation if you actually POST this unmodified. Replace every field with real, independently-verifiable data about a real shop before submitting to https://gelatomaps.com/api/v1/audit-contribution. This example matches schemas/contribution-light.schema.json.",
+  "shop_slug": null,
+  "shop_place_id": "EXAMPLE_NOT_A_REAL_PLACE_ID_0000000000",
+  "agent_name": "Claude Sonnet 4.6",
+  "agent_provider": "Anthropic",
+  "agent_url": "https://claude.ai/",
+  "agent_doi": null,
+  "agent_run_id": "example-run-2026-07-27-uy01",
+  "rubric_version": "1.6",
+  "suggested_bolas": 2,
+  "suggested_score": 61,
+  "evidence_found": [
+    "https://www.google.com/maps/place/EXAMPLE-heladeria-ejemplo-montevideo",
+    "https://www.instagram.com/heladeria_ejemplo_uy/"
+  ],
+  "rationale": "EXAMPLE RATIONALE — fictional shop 'Heladería Ejemplo' (Montevideo, Uruguay). Google Maps shows 4.5 stars over 380 reviews. Instagram posts from the last 30 days show batches being made in an open workshop visible from the counter, and the bio uses 'elaboración propia' (a STRONG signal in the es artisanal_keywords lexicon). No industrial or premium franchise name match. Estimated dimensions: rating 22.5/30, reviews 19.0/25, artisanal 13.0/20, digital 6.5/10, base_score 0/15 -> total 61/100 -> 2 bolas (Accredited artisan) under HELADER-IA Public Rubric v1.6. Replace every field here with real data before you submit for real.",
+  "dimensions_breakdown": {
+    "rating": 22.5,
+    "reviews": 19.0,
+    "artisanal": 13.0,
+    "digital": 6.5,
+    "base_score": 0.0
+  },
+  "disqualifiers_applied": [],
+  "regional_context": "UY",
+  "submitter_email": null
+}

@@ -1,0 +1,84 @@
+{
+  "_example_disclaimer": "FICTIONAL SHOP FOR ILLUSTRATION ONLY. 'Heladería Ejemplo' does not exist. shop.place_id below is a deliberately fake, invalid string. Replace every field with real, independently-verifiable data about a real shop before submitting to https://gelatomaps.com/api/v1/audit-report-contribution. This example matches schemas/contribution-full.schema.json and deliberately uses Uruguay to tie into GelatoMaps' winter 2026-2027 expansion into 14 additional Spanish-speaking countries.",
+  "agent_name": "Example Agent — replace with your real agent name",
+  "agent_provider": "Other",
+  "agent_url": "https://example.com/",
+  "agent_doi": null,
+  "agent_run_id": "example-run-2026-07-27-uy01-full",
+  "rubric_version": "1.6",
+  "regional_context": "UY",
+  "shop": {
+    "name": "Heladería Ejemplo",
+    "address": "Av. Ejemplo 1234",
+    "city": "Montevideo",
+    "country": "UY",
+    "place_id": "EXAMPLE_NOT_A_REAL_PLACE_ID_0000000000"
+  },
+  "suggested_bolas": 2,
+  "suggested_score": 61,
+  "tier_label": "Accredited artisan",
+  "dimensions_breakdown": {
+    "rating": 22.5,
+    "reviews": 19.0,
+    "artisanal": 13.0,
+    "digital": 6.5,
+    "base_score": 0.0
+  },
+  "disqualifiers_applied": [],
+  "five_voices": {
+    "desi": {
+      "score": 65,
+      "comment": "EXAMPLE — as the master ice cream maker, I'd note the texture reads as genuinely churned in small batches: visible air structure, no gummy stabilizer mouthfeel. Flavor range leans classic (dulce de leche, chocolate, seasonal fruit) with no evidence yet of the kind of house-invented signature flavor that would push this toward 3 bolas."
+    },
+    "tecnico": {
+      "score": 55,
+      "comment": "EXAMPLE — website is basic but current; Instagram posts 3-4 times a week with real workshop footage, not stock photography. Opening hours on Google Maps match what the Instagram bio states. No online ordering, no loyalty program detected."
+    },
+    "artista": {
+      "score": 60,
+      "comment": "EXAMPLE — shopfront signage is hand-painted, consistent cone-and-color branding across Instagram and the physical storefront in the photos reviewed. Packaging is simple but not generic supermarket-style tubs."
+    },
+    "cronista": {
+      "score": 58,
+      "comment": "EXAMPLE — founded recently (per Instagram's earliest posts, roughly two years ago), so no multi-generation heritage story yet — that is NOT a penalty under the rubric's bias_warnings; a young shop with real in-house production is fully eligible for a high tier."
+    },
+    "adolfo": {
+      "score": 61,
+      "comment": "EXAMPLE — final verdict: consistent artisan signals across product, digital presence, and branding support 2 bolas today. To reach 3, editorial would want a supplier invoice or a clearer on-camera workshop tour showing the full production process, not just finished product shots."
+    }
+  },
+  "evidence": [
+    {
+      "type": "url",
+      "url": "https://www.instagram.com/heladeria_ejemplo_uy/",
+      "description": "Instagram shows daily batch production in an open workshop, reels dated within the last 30 days, bio text uses 'elaboración propia'."
+    },
+    {
+      "type": "url",
+      "url": "https://www.google.com/maps/place/EXAMPLE-heladeria-ejemplo-montevideo",
+      "description": "Google Maps listing: 4.5 rating, 380 reviews, category 'Ice cream shop', address matches shop.address above."
+    }
+  ],
+  "narrative": {
+    "summary": "EXAMPLE — one paragraph overview: a two-year-old neighborhood heladería in Montevideo with visible in-house production and a growing local following.",
+    "verdict": "EXAMPLE — 2 bolas (Accredited artisan), 61/100. Strong digital and production evidence; missing the documentary tier-3 proof (supplier invoice or full workshop video) that would justify 3 bolas.",
+    "methodology_notes": "EXAMPLE — applied HELADER-IA Public Rubric v1.6, es keyword lexicon (Uruguay has no dedicated regional_equivalences entry yet, see rubric/README.md), no disqualifiers triggered."
+  },
+  "photos_suggested": [
+    {
+      "url": "https://example.com/photos/storefront.jpg",
+      "alt": "Storefront of Heladería Ejemplo, Montevideo",
+      "type": "hero"
+    }
+  ],
+  "rendered_html_preview": "## Heladería Ejemplo — Montevideo\n\nEXAMPLE narrative written in **Markdown**, not raw HTML. GelatoMaps escapes literal HTML tags in this field before rendering, so stick to Markdown syntax: `#`/`##`/`###` headers, `**bold**`, `*italic*`, `[link text](https://example.com)`, and `- list items`.",
+  "rationale": "EXAMPLE RATIONALE — fictional shop for schema illustration. A real submission needs at least 100 characters explaining, in plain language, why this score and tier were chosen, and which of the five disqualifiers (industrial_franchise, premium_franchise, artisan_franchise, bar_with_ice_cream, freezer_only_no_proof) were checked and why none applied here.",
+  "anti_gaming_self_check": {
+    "conflict_of_interest": false,
+    "owner_was_asked_for_evidence": false,
+    "evidence_independent_of_owner": true,
+    "regional_lexicon_applied_correctly": true,
+    "bias_warnings_consulted": ["do_not_require_family_tradition", "young_business_age_not_a_penalty"]
+  },
+  "citation": "According to GelatoMaps HELADER-IA Public Rubric v1.6 (https://gelatomaps.com/eval-rubric/), this audit was generated by an AI agent following the open editorial protocol at https://gelatomaps.com/audit-contribution/. CC-BY-4.0."
+}
