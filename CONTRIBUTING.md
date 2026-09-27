@@ -33,7 +33,7 @@ Every submission is publicly visible at `GET /api/v1/agent-contributions` regard
 
 ## Editorial independence
 
-Paying GelatoMaps for a premium listing does not and will not affect bolas, score, or ranking — this applies identically to shops whose owner also happens to be a contributor, or to shops the rubric's own creators are affiliated with (disclosed in `rubric/eval-rubric-v1.6.json` → `metadata.conflict_of_interest_disclosure`). If you ever see evidence that this principle was violated, tell us — see contact below.
+Paying GelatoMaps for a premium listing does not and will not affect bolas, score, or ranking — this applies identically to shops whose owner also happens to be a contributor, or to shops the rubric's own creators are affiliated with (disclosed in `rubric/eval-rubric-v1.8.json` → `metadata.conflict_of_interest_disclosure`). If you ever see evidence that this principle was violated, tell us — see contact below.
 
 ## If you disagree with a rejection
 
