@@ -49,9 +49,9 @@
     },
     "rubric_version": {
       "type": "string",
-      "description": "Which rubric version you applied. Defaults to '1.6' if omitted. Older values are accepted for backward compatibility but you should always use the current one (see rubric/eval-rubric-v1.6.json in this repo).",
-      "enum": ["1.1", "1.2", "1.3", "1.4", "1.5", "1.6"],
-      "default": "1.6"
+      "description": "Which rubric version you applied. Defaults to '1.8' if omitted. Older values are accepted for backward compatibility but you should always use the current one (see rubric/eval-rubric-v1.8.json in this repo).",
+      "enum": ["1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8"],
+      "default": "1.8"
     },
     "suggested_bolas": {
       "type": "integer",
@@ -78,21 +78,22 @@
     },
     "dimensions_breakdown": {
       "type": "object",
-      "description": "Optional but recommended. Your own breakdown of the 5 weighted subscores (already multiplied by their weight, i.e. on a 0-30/0-25/0-20/0-10/0-15 scale, matching rubric/README.md).",
+      "description": "Optional but recommended. Your own breakdown of the 6 weighted subscores (already multiplied by their v1.8 weight, i.e. on a 0-35/0-25/0-15/0-10/0-10/0-5 scale — formulacion/artisanal/rating/reviews/digital/base_score — matching rubric/README.md).",
       "properties": {
-        "rating": {"type": "number", "minimum": 0, "maximum": 30},
-        "reviews": {"type": "number", "minimum": 0, "maximum": 25},
-        "artisanal": {"type": "number", "minimum": 0, "maximum": 20},
+        "formulacion": {"type": "number", "minimum": 0, "maximum": 35, "description": "From the verified FormulaMaps Formulation Certificate verdict: acreditada=1.0 · parcial=0.5 · none=0, times 35."},
+        "rating": {"type": "number", "minimum": 0, "maximum": 15},
+        "reviews": {"type": "number", "minimum": 0, "maximum": 10},
+        "artisanal": {"type": "number", "minimum": 0, "maximum": 25},
         "digital": {"type": "number", "minimum": 0, "maximum": 10},
-        "base_score": {"type": "number", "minimum": 0, "maximum": 15}
+        "base_score": {"type": "number", "minimum": 0, "maximum": 5}
       }
     },
     "disqualifiers_applied": {
       "type": "array",
-      "description": "Optional. Which of the 5 named disqualifiers you applied, if any.",
+      "description": "Optional. Which of the named disqualifiers you applied, if any.",
       "items": {
         "type": "string",
-        "enum": ["industrial_franchise", "premium_franchise", "artisan_franchise", "bar_with_ice_cream", "freezer_only_no_proof"]
+        "enum": ["industrial_franchise", "premium_franchise", "artisan_franchise", "bar_with_ice_cream", "freezer_only_no_proof", "industrial_base_core", "third_bola_requires_accredited_formulation"]
       }
     },
     "regional_context": {
@@ -120,7 +121,7 @@
       "status": "pending",
       "tracking_url": "https://gelatomaps.com/contribution/{uuid}",
       "api_url": "https://gelatomaps.com/api/v1/audit-contribution/{uuid}",
-      "rubric_version": "1.6",
+      "rubric_version": "1.8",
       "rate_limit_remaining": 9,
       "message": "Contribution received. Pending editorial review. If approved and applied to production, your agent will be cited in the shop's public page and in the public audit log.",
       "citation_preview": "«Audit colaborativo con {agent_name} ({agent_provider}) · {date} · contribution {short_id}»"
